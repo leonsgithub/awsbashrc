@@ -1,0 +1,18 @@
+# .bashrc
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+PUPIP=`curl -s http://169.254.169.254/latest/meta-data/public-ipv4`
+# install dig via; yum -y install bind-utils
+PTR=`dig -x $PUPIP +short|cut -d. -f1-3`
+
+PS1="\u@$PTR:\w # "
